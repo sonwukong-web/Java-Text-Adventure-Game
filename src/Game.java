@@ -1,3 +1,4 @@
+import javax.jws.soap.SOAPBinding;
 import java.util.Scanner;
 
 public class Game {
@@ -47,7 +48,7 @@ public class Game {
 
         if(choice==1)
         {
-            System.out.println("Guard: Hello there stranger! So your name is "+playerName+". Sorry but we cannot let you enter the town.");
+            System.out.println("Guard: Hello there stranger! So your name is "+playerName+". \nGuard: Sorry but we cannot let you enter the town.");
             enterIp.nextLine();
             townGate();
         }
@@ -56,10 +57,14 @@ public class Game {
             playerHp--;
             System.out.println("Guard: Hey! Don't be stupid.\nThe Guard hit you so hard and you gave up.\n(You recieved 1 damage!)");
             System.out.println("Your HP: "+playerHp);
+            enterIp.nextLine();
             townGate();
         }
+        else if(choice==3) {
+             crossRoad();
+        }
         else {
-
+            townGate();
         }
 
 
@@ -68,6 +73,59 @@ public class Game {
 
     public void crossRoad()
     {
+       System.out.println("\n-----------------------------------------------------------------\n");
+       System.out.println("You are at a cross road. If you go South you will return to the town gate.\n");
+       System.out.println("1. Go South.");
+       System.out.println("2. Go North.");
+       System.out.println("3. Go West.");
+       System.out.println("4. Go East.");
+
+       choice = enterIp.nextInt();
+       if(choice==1)
+       {
+           south();
+       } else if (choice==2)
+       {
+          north();
+       }
+       else if(choice==3)
+       {
+           west();
+       }
+       else if(choice==4)
+       {
+           east();
+       }
+       else {
+           crossRoad();
+       }
+
 
     }
+
+    public void east()
+    {
+
+    }
+
+    public void west()
+    {
+
+    }
+
+    public void north()
+    {
+        System.out.println("\n-----------------------------------------------------------------\n");
+        System.out.println("There is water at riverside and you can Drink it.");
+        System.out.println("Your Hp is recovered.");
+        playerHp++;
+        System.out.println("Your HP is: "+playerHp);
+        System.out.println();
+    }
+
+    public void south()
+    {
+        townGate();
+    }
+
 }
